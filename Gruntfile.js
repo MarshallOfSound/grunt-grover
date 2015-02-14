@@ -32,18 +32,25 @@ module.exports = function(grunt) {
     grover: {
       default_options: {
         options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+          path: 'test/js/*.html',
+          concurrent: 2,
+          logLevel: 2,
+          failOnFirst: true,
+          timeout: 10,
+          import: false,
+          prefix: false,
+          suffix: false,
+          outfile: false,
+          outtype: 'tap',
+          server: false,
+          port: 8000,
+          'phantom-bin': false,
+          'no-run': false,
+          coverage: false,
+          'coverage-warn': 80,
+          istanbul: false,
+          coverageFile: false,
+          sourcePrefix: false
         }
       }
     },
