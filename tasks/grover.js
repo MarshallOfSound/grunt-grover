@@ -79,7 +79,7 @@ module.exports = function(grunt) {
                 'no-run': false,
                 coverage: {
                     on: false,
-                    'coverage-warn': 80,
+                    warn: 80,
                     istanbul: false,
                     reportFile: false,
                     sourcePrefix: false
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
             if (outputTypes.indexOf(options.outtype) !== -1) {
                 cmd += boolVar(true, '-' + options.outtype);
             } else {
-                cmd += boolVar(trye, '--tap');
+                cmd += boolVar(true, '--tap');
             }
         }
 
