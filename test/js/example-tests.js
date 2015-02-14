@@ -19,7 +19,7 @@ YUI().use('test-console', 'test', function(Y) {
 
 		// each test should be in the format {function being tested}() should {what it should do} if {stuff happens}
 		'theFunction() should "do something" if "something happens"': function() {
-			Assert.areEqual(true, false);
+			Assert.areEqual(true, true);
 		}
 	}));
 

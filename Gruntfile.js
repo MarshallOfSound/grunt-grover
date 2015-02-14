@@ -33,10 +33,10 @@ module.exports = function(grunt) {
       default_options: {
         options: {
           path: 'test/js/*.html',
-          concurrent: 2,
           logLevel: 2,
-          failOnFirst: true,
-          timeout: 10,
+          failOnFirst: false,
+          concurrent: 15,
+          timeout: false,
           import: false,
           prefix: false,
           suffix: false,
@@ -46,11 +46,13 @@ module.exports = function(grunt) {
           port: 8000,
           'phantom-bin': false,
           'no-run': false,
-          coverage: false,
-          'coverage-warn': 80,
-          istanbul: false,
-          coverageFile: false,
-          sourcePrefix: false
+          coverage: {
+            on: false,
+            warn: 80,
+            istanbul: false,
+            reportFile: false,
+            sourcePrefix: false
+          }
         }
       }
     },
@@ -72,7 +74,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'grover', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'grover']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
