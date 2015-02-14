@@ -42,6 +42,11 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "grunt",
+    "grover",
+    "yui",
+    "test",
+    "framework"
   ]
 }
