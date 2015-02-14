@@ -11,7 +11,8 @@ var exec = require('child_process').exec,
     path = require('path'),
     glob = require('glob'),
     phantomWin = 'node_modules/phantomjs/lib/phantom/phantomjs.exe',
-    phantomLin = 'node_modules/phantomjs/lib/phantom/bin/phantomjs',
+    phantomLin = './node_modules/phantomjs/lib/phantom/bin/phantomjs',
+    phantomLinUsr = '/usr/local/phantomjs/bin/phantomjs',
     outputTypes = ['tap', 'xml', 'json', 'junit'];
 
 function pathVar(attr, flag) {
@@ -147,6 +148,8 @@ module.exports = function(grunt) {
             cmd += pathVar(options.coverage.sourcePrefix, 'sp');
         }
 
+	console.log(path.normalize(phantomLin));
+
         if (typeof options['phantom-bin'] === 'string' && grunt.file.exists(options['phantom-bin'])) {
             cmd += ' --phantom-bin ' + path.normalize(options['phantom-bin']);
         } else if (grunt.file.exists(phantomWin)) {
@@ -155,6 +158,9 @@ module.exports = function(grunt) {
         } else if (grunt.file.exists(phantomLin)) {
             grunt.log.ok('Using default linux phantomjs path');
             cmd += ' --phantom-bin ' + path.normalize(phantomLin);
+        } else if (grunt.file.exists(phantomLinUsr)) {
+	    grunt.log.ok('Using default system phantomjs path');
+	    cmd += ' --phantom-bin ' + path.normalize(phantomLinUsr);
         } else {
             grunt.fail.fatal('phantomjs binary could not be found');
         }
