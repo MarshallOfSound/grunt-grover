@@ -10,9 +10,8 @@
 var exec = require('child_process').exec,
     path = require('path'),
     glob = require('glob'),
-    phantomWin = 'node_modules/phantomjs/lib/phantom/phantomjs.exe',
-    phantomLin = './node_modules/phantomjs/lib/phantom/bin/phantomjs',
-    phantomLinUsr = '/usr/local/phantomjs/bin/phantomjs',
+    phantom = require('phantomjs'),
+    phantomPath = phantom.path,
     outputTypes = ['tap', 'xml', 'json', 'junit'];
 
 function pathVar(attr, flag) {
@@ -76,7 +75,7 @@ module.exports = function(grunt) {
                 outtype: 'tap',
                 server: false,
                 port: 8000,
-                'phantom-bin': phantomWin,
+                'phantom-bin': phantomPath,
                 'no-run': false,
                 coverage: {
                     on: false,
@@ -148,20 +147,12 @@ module.exports = function(grunt) {
             cmd += pathVar(options.coverage.sourcePrefix, 'sp');
         }
 
-	console.log(path.normalize(phantomLin));
-
         if (typeof options['phantom-bin'] === 'string' && grunt.file.exists(options['phantom-bin'])) {
             cmd += ' --phantom-bin ' + path.normalize(options['phantom-bin']);
-        } else if (grunt.file.exists(phantomWin)) {
-            grunt.log.ok('Using default windows phantomjs path');
-            cmd += ' --phantom-bin ' + path.normalize(phantomWin);
-        } else if (grunt.file.exists(phantomLin)) {
-            grunt.log.ok('Using default linux phantomjs path');
-            cmd += ' --phantom-bin ' + path.normalize(phantomLin);
-        } else if (grunt.file.exists(phantomLinUsr)) {
-	    grunt.log.ok('Using default system phantomjs path');
-	    cmd += ' --phantom-bin ' + path.normalize(phantomLinUsr);
-        } else {
+        } else if (grunt.file.exists(phantomPath)) {
+            grunt.log.ok('Using default node phantomjs path');
+            cmd += ' --phantom-bin ' + path.normalize(phantomPath);
+	} else {
             grunt.fail.fatal('phantomjs binary could not be found');
         }
 
