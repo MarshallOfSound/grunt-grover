@@ -1,4 +1,4 @@
-# grunt-grover
+# grunt-grover  [![Build Status](https://travis-ci.org/MarshallOfSound/grunt-grover.svg?branch=master)](https://travis-ci.org/MarshallOfSound/grunt-grover)
 
 > A grunt task to run yui tests with grover
 
