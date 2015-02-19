@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Grunt-grover : Run YUI tests with Grunt">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Grunt-grover</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/MarshallOfSound/grunt-grover">View on GitHub</a>
+
+          <h1 id="project_title">Grunt-grover</h1>
+          <h2 id="project_tagline">Run YUI tests with Grunt</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/MarshallOfSound/grunt-grover/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/MarshallOfSound/grunt-grover/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="grunt-grover--" class="anchor" href="#grunt-grover--" aria-hidden="true"><span class="octicon octicon-link"></span></a>grunt-grover  <a href="https://travis-ci.org/MarshallOfSound/grunt-grover"><img src="https://travis-ci.org/MarshallOfSound/grunt-grover.svg?branch=master" alt="Build Status"></a>
+</h1>
+
+<blockquote>
+<p>A grunt task to run yui tests with grover</p>
+</blockquote>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>This plugin requires Grunt <code>~0.4.5</code></p>
+
+<p>If you haven't used <a href="http://gruntjs.com/">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile">Gruntfile</a> as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:</p>
+
+<div class="highlight highlight-shell"><pre>npm install grunt-grover --save-dev</pre></div>
+
+<p>Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:</p>
+
+<div class="highlight highlight-js"><pre>grunt.loadNpmTasks(<span class="pl-s1"><span class="pl-pds">'</span>grunt-grover<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="the-grover-task" class="anchor" href="#the-grover-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>The "grover" task</h2>
+
+<h3>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h3>
+
+<p>In your project's Gruntfile, add a section named <code>grover</code> to the data object passed into <code>grunt.initConfig()</code>.</p>
+
+<div class="highlight highlight-js"><pre>grunt.initConfig({
+  grover<span class="pl-k">:</span> {
+    options<span class="pl-k">:</span> {
+      <span class="pl-c">// Task-specific options go here.</span>
+    }
+  },
+});</pre></div>
+
+<h3>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<h4>
+<a id="optionspath" class="anchor" href="#optionspath" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.path</h4>
+
+<p><em>Required</em><br>
+Type: <code>String</code></p>
+
+<p>A glob format path to your YUI test files.  E.g. <code>'test/js/*.html'</code></p>
+
+<h4>
+<a id="optionsconcurrent" class="anchor" href="#optionsconcurrent" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.concurrent</h4>
+
+<p>Type: <code>Number</code><br>
+Default value: <code>15</code></p>
+
+<p>Number of tests to run concurrently</p>
+
+<h4>
+<a id="optionsloglevel" class="anchor" href="#optionsloglevel" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.logLevel</h4>
+
+<p>Type: <code>Number</code>
+Default value: <code>2</code></p>
+
+<p>Level of logging --<br>
+<code>2</code>: All output<br>
+<code>1</code>: Only error output<br>
+<code>0</code>: No output</p>
+
+<h4>
+<a id="optionsfailonfirst" class="anchor" href="#optionsfailonfirst" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.failOnFirst</h4>
+
+<p>Type: <code>Boolean</code><br>
+Default value: <code>false</code></p>
+
+<p>Fail on the first error</p>
+
+<h4>
+<a id="optionstimeout" class="anchor" href="#optionstimeout" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.timeout</h4>
+
+<p>Type: <code>Number</code></p>
+
+<p>Time in seconds, after which to consider a test failed</p>
+
+<h4>
+<a id="optionsimport" class="anchor" href="#optionsimport" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.import</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>Path to a JS file to include and use the export (an array) as the list of files to process</p>
+
+<h4>
+<a id="optionsprefix" class="anchor" href="#optionsprefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.prefix</h4>
+
+<p>Type: <code>String</code>=</p>
+
+<p>String to prefix all server URL's with (for dynamic server names)</p>
+
+<h4>
+<a id="optionssuffix" class="anchor" href="#optionssuffix" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.suffix</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>String to append to all server URL's (for dynamic server names)</p>
+
+<h4>
+<a id="optionsoutfile" class="anchor" href="#optionsoutfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.outfile</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>Path to a file to output the test results to, if the file does not exist it will be created for you<br>
+The output type can be set with the <code>options.outtype</code> setting</p>
+
+<h4>
+<a id="optionsouttype" class="anchor" href="#optionsouttype" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.outtype</h4>
+
+<p>Type: <code>String</code><br>
+Default value: <code>tap</code></p>
+
+<p>The format for the test results output file, it can be:<br>
+<code>tap</code>: TAP export<br>
+<code>xml</code>: XML export<br>
+<code>json</code>: JSON export<br>
+<code>junit</code>: JUnit XML export  </p>
+
+<h4>
+<a id="optionsserver" class="anchor" href="#optionsserver" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.server</h4>
+
+<p>Type: <code>Boolean</code><br>
+Default value: <code>false</code></p>
+
+<p>Starts a static file server in the CWD, tests should be relative to this directory</p>
+
+<h4>
+<a id="optionsport" class="anchor" href="#optionsport" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.port</h4>
+
+<p>Type: <code>Number</code>
+Default value: <code>8000</code></p>
+
+<p>Port number to start the static file server on</p>
+
+<h4>
+<a id="optionsphantom-bin" class="anchor" href="#optionsphantom-bin" aria-hidden="true"><span class="octicon octicon-link"></span></a>options['phantom-bin']</h4>
+
+<p>Type: <code>String</code><br>
+Default value: <code>Searches for phantomjs in the node_modeuls directory</code></p>
+
+<p>Path to phantomjs if you don't want to use the node intergrated version</p>
+
+<h4>
+<a id="optionsno-run" class="anchor" href="#optionsno-run" aria-hidden="true"><span class="octicon octicon-link"></span></a>options['no-run']</h4>
+
+<p>Type: <code>Boolean</code>
+Default value: <code>false</code></p>
+
+<p>Do not run the tests, just prep the server (used for other testing)</p>
+
+<h3>
+<a id="coverage-options" class="anchor" href="#coverage-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coverage Options</h3>
+
+<p>Coverage options are stored in a <code>optiones.coverage</code> object.  For coverage to work you must instument your own files with istanbul.</p>
+
+<h4>
+<a id="optionscoverageon" class="anchor" href="#optionscoverageon" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.coverage.on</h4>
+
+<p>Type: <code>Boolean</code>
+Default value: <code>false</code></p>
+
+<p>Generate a coverage report and print it to the screen</p>
+
+<h4>
+<a id="optionscoveragewarn" class="anchor" href="#optionscoveragewarn" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.coverage.warn</h4>
+
+<p>Type: <code>Number</code>
+Default value: <code>80</code></p>
+
+<p>Level of coverage to throw a Grunt warning at</p>
+
+<h4>
+<a id="optionscoverageistanbul" class="anchor" href="#optionscoverageistanbul" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.coverage.istanbul</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>Path to output a istanbul coverage report to, must be an empty directory.  If the directory does not exist it will be created for you</p>
+
+<h4>
+<a id="optionsreportfile" class="anchor" href="#optionsreportfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.reportFile</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>Path to output a basic coverage report file to, the file will be in a <code>lcov</code> format.  If the file does not exist it will be created for you.</p>
+
+<h4>
+<a id="optionssourceprefix" class="anchor" href="#optionssourceprefix" aria-hidden="true"><span class="octicon octicon-link"></span></a>options.sourcePrefix</h4>
+
+<p>Type: <code>String</code></p>
+
+<p>The relative path to the original source file for use in the coverage results.</p>
+
+<h3>
+<a id="usage-examples" class="anchor" href="#usage-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage Examples</h3>
+
+<h4>
+<a id="basic-options" class="anchor" href="#basic-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Options</h4>
+
+<p>In this example, basic options are setup to run yui test on all files in the <code>test/js</code> directory with full logging turned on.  A test report will be created at <code>reports/grover.tap</code> and coverage information will appear in the console.</p>
+
+<div class="highlight highlight-js"><pre>grunt.initConfig({
+  grover<span class="pl-k">:</span> {
+    options<span class="pl-k">:</span> {
+        path<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>test/js/*.html<span class="pl-pds">'</span></span>,
+        logLevel<span class="pl-k">:</span> <span class="pl-c1">2</span>,
+        concurrent<span class="pl-k">:</span> <span class="pl-c1">15</span>,
+        outfile<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>reports/grover.tap<span class="pl-pds">'</span></span>,
+        outtype<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>tap<span class="pl-pds">'</span></span>,
+        coverage<span class="pl-k">:</span> {
+            on<span class="pl-k">:</span> <span class="pl-c1">true</span>
+        }
+    }
+  },
+});</pre></div>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gruntjs.com/">Grunt</a>.</p>
+
+<h2>
+<a id="release-history" class="anchor" href="#release-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release History</h2>
+
+<p>*<em>0.1.0: *</em> <em>15/02/2015</em>
+*<em>0.2.0: *</em> <em>17/02/2015</em>
+*<em>0.2.1: *</em> <em>19/02/2015</em></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Grunt-grover maintained by <a href="https://github.com/MarshallOfSound">MarshallOfSound</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
