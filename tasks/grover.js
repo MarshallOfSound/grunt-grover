@@ -136,6 +136,9 @@ module.exports = function(grunt) {
         // Coverage options
         if (typeof options.coverage === 'object' && typeof options.coverage.on === 'boolean' && options.coverage.on === true) {
             cmd += boolVar(true, '-coverage');
+            if (typeof options.coverage.warn === 'undefined') {
+                options.coverage.warn = 80;
+            }
             cmd += numVar(options.coverage.warn, '-coverage-warn');
             if (typeof options.coverage.istanbul === 'string') {
                 grunt.file.mkdir(options.coverage.istanbul);
