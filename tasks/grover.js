@@ -8,6 +8,7 @@
 
 'use strict';
 var exec = require('child_process').exec,
+    grunt = require('grunt'),
     path = require('path'),
     glob = require('glob'),
     phantom = require('phantomjs'),
@@ -146,6 +147,7 @@ module.exports = function(grunt) {
             }
             if (typeof options.coverage.reportFile === 'string') {
                 grunt.file.write(options.coverage.reportFile, '');
+                cmd += ' -co ' + path.normalize(options.coverage.reportFile);
             }
             cmd += pathVar(options.coverage.sourcePrefix, 'sp');
         }
