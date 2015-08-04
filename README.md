@@ -50,7 +50,7 @@ Number of tests to run concurrently
 Type: `Number`
 Default value: `2`
 
-Level of logging --   
+Level of logging --
 `2`: All output  
 `1`: Only error output  
 `0`: No output
@@ -142,12 +142,12 @@ Type: `String`
 
 Path to output a istanbul coverage report to, must be an empty directory.  If the directory does not exist it will be created for you
 
-#### options.reportFile
+#### options.coverage.reportFile
 Type: `String`
 
 Path to output a basic coverage report file to, the file will be in a `lcov` format.  If the file does not exist it will be created for you.
 
-#### options.sourcePrefix
+#### options.coverage.sourcePrefix
 Type: `String`
 
 The relative path to the original source file for use in the coverage results.
