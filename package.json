@@ -1,7 +1,7 @@
 {
   "name": "grunt-grover",
   "description": "A grunt task to run yui tests with grover",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/MarshallOfSound/grunt-grover",
   "author": {
     "name": "Samuel Attard",
