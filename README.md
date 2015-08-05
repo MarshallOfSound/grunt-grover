@@ -160,7 +160,8 @@ In this example, basic options are setup to run yui test on all files in the `te
 ```js
 grunt.initConfig({
   grover: {
-    options: {
+    default: {
+      options: {
         path: 'test/js/*.html',
         logLevel: 2,
         concurrent: 15,
@@ -169,8 +170,9 @@ grunt.initConfig({
         coverage: {
             on: true
         }
+      }
     }
-  },
+  }
 });
 ```
 
