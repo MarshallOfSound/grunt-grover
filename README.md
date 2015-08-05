@@ -25,8 +25,10 @@ In your project's Gruntfile, add a section named `grover` to the data object pas
 ```js
 grunt.initConfig({
   grover: {
-    options: {
-      // Task-specific options go here.
+    default: {
+      options: {
+        // Task-specific options go here.
+      }
     }
   },
 });
@@ -160,15 +162,17 @@ In this example, basic options are setup to run yui test on all files in the `te
 ```js
 grunt.initConfig({
   grover: {
-    options: {
-        path: 'test/js/*.html',
-        logLevel: 2,
-        concurrent: 15,
-        outfile: 'reports/grover.tap',
-        outtype: 'tap',
-        coverage: {
-            on: true
-        }
+    default: {
+      options: {
+          path: 'test/js/*.html',
+          logLevel: 2,
+          concurrent: 15,
+          outfile: 'reports/grover.tap',
+          outtype: 'tap',
+          coverage: {
+              on: true
+          }
+      }
     }
   },
 });
