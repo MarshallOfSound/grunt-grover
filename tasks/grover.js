@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
     // Please see the Grunt documentation for more information regarding task
     // creation: http://gruntjs.com/creating-tasks
-    grunt.registerMultiTask('grover', 'A grunt task to run yui tests with grover', function() {
+    grunt.registerTask('grover', 'A grunt task to run yui tests with grover', function() {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
                 path: false,
