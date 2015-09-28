@@ -90,7 +90,6 @@ module.exports = function(grunt) {
             cmd = path.resolve('' + path.normalize('node_modules/.bin/grover')),
             cb = this.async(),
             execPath;
-            grunt.log.ok('grover exec: ' + cmd);
 
 
         if (typeof options.path === 'string') {
@@ -104,7 +103,7 @@ module.exports = function(grunt) {
         }
 
         if (typeof options['execution-path'] === 'string') {
-            grunt.log.ok('exec: ' + options['execution-path']);
+            grunt.log.ok('execution-path: ' + options['execution-path']);
             execPath = path.resolve(options['execution-path']);
         }
 
@@ -170,7 +169,7 @@ module.exports = function(grunt) {
 	} else {
             grunt.fail.fatal('phantomjs binary could not be found');
         }
-        grunt.log.ok(execPath);
+        grunt.log.ok('Executing from: ' + execPath);
         exec(cmd, {cwd: execPath}, function(error, stdout, stderr) {
             grunt.log.ok('cwd: ' + options.cwd);
             if (error !== null && stderr === '') {
