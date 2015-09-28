@@ -170,6 +170,7 @@ grunt.initConfig({
     default: {
       options: {
           path: 'test/js/*.html',
+          'execution-path': 'target/combined-sources',
           logLevel: 2,
           concurrent: 15,
           outfile: 'reports/grover.tap',
