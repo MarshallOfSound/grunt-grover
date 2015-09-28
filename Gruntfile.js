@@ -33,6 +33,7 @@ module.exports = function(grunt) {
       default_options: {
         options: {
           path: 'test/js/*.html',
+          'execution-path': '../..',
           logLevel: 2,
           failOnFirst: false,
           concurrent: 15,

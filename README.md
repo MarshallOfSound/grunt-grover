@@ -42,6 +42,11 @@ Type: `String`
 
 A glob format path to your YUI test files.  E.g. `'test/js/*.html'`
 
+#### options[execution-path]
+Type: 'String'
+
+The path on which to execute the grover command
+
 #### options.concurrent
 Type: `Number`  
 Default value: `15`
@@ -184,3 +189,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 **0.1.0: ** *15/02/2015*
 **0.2.3: ** *5/08/2015*
+**0.2.4: ** *28/9/2015*
