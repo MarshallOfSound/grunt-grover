@@ -42,7 +42,7 @@ Type: `String`
 
 A glob format path to your YUI test files.  E.g. `'test/js/*.html'`
 
-#### options[execution-path]
+#### options.cwd
 Type: 'String'
 
 The path on which to execute the grover command
@@ -170,7 +170,7 @@ grunt.initConfig({
     default: {
       options: {
           path: 'test/js/*.html',
-          'execution-path': 'target/combined-sources',
+          cwd: 'target/combined-sources',
           logLevel: 2,
           concurrent: 15,
           outfile: 'reports/grover.tap',

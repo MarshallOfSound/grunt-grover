@@ -78,7 +78,7 @@ module.exports = function(grunt) {
                 port: 8000,
                 'phantom-bin': phantomPath,
                 'no-run': false,
-                'execution-path': false,
+                cwd: false,
                 coverage: {
                     on: false,
                     warn: 80,
@@ -102,9 +102,9 @@ module.exports = function(grunt) {
             grunt.fail.fatal('The path option must be set to a string');
         }
 
-        if (typeof options['execution-path'] === 'string') {
-            grunt.log.ok('execution-path: ' + options['execution-path']);
-            execPath = path.resolve(options['execution-path']);
+        if (typeof options.cwd === 'string') {
+            grunt.log.ok('cwd: ' + options.cwd);
+            execPath = path.resolve(options.cwd);
         }
 
 
@@ -169,9 +169,7 @@ module.exports = function(grunt) {
 	} else {
             grunt.fail.fatal('phantomjs binary could not be found');
         }
-        grunt.log.ok('Executing from: ' + execPath);
         exec(cmd, {cwd: execPath}, function(error, stdout, stderr) {
-            grunt.log.ok('cwd: ' + options.cwd);
             if (error !== null && stderr === '') {
                 stderr = 'There were test failures, please check the log';
             }
