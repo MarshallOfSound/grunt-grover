@@ -78,6 +78,7 @@ module.exports = function(grunt) {
                 port: 8000,
                 'phantom-bin': phantomPath,
                 'no-run': false,
+                cwd: false,
                 coverage: {
                     on: false,
                     warn: 80,
@@ -86,18 +87,26 @@ module.exports = function(grunt) {
                     sourcePrefix: false
                 }
             }),
-            cmd = '' + path.normalize('node_modules/.bin/grover'),
-            cb = this.async();
+            cmd = path.resolve('' + path.normalize('node_modules/.bin/grover')),
+            cb = this.async(),
+            execPath;
+
 
         if (typeof options.path === 'string') {
             if (glob.sync(options.path).length !== 0) {
-                cmd += ' ' + options.path;
+                cmd += ' ' + path.resolve(options.path);
             } else {
                 grunt.fail.fatal('The specified path matches no files');
             }
         } else {
             grunt.fail.fatal('The path option must be set to a string');
         }
+
+        if (typeof options.cwd === 'string') {
+            grunt.log.ok('cwd: ' + options.cwd);
+            execPath = path.resolve(options.cwd);
+        }
+
 
         switch (options.logLevel) {
             case 0:
@@ -119,7 +128,7 @@ module.exports = function(grunt) {
         cmd += stringVar(options.suffix, 's');
         if (typeof options.outfile === 'string') {
             grunt.file.write(options.outfile, '');
-            cmd += ' -o ' + path.normalize(options.outfile);
+            cmd += ' -o ' + path.resolve(options.outfile);
             if (outputTypes.indexOf(options.outtype) !== -1) {
                 cmd += boolVar(true, '-' + options.outtype);
             } else {
@@ -143,25 +152,24 @@ module.exports = function(grunt) {
             cmd += numVar(options.coverage.warn, '-coverage-warn');
             if (typeof options.coverage.istanbul === 'string') {
                 grunt.file.mkdir(options.coverage.istanbul);
-                cmd += ' --istanbul-report ' + path.normalize(options.coverage.istanbul);
+                cmd += ' --istanbul-report ' + path.resolve(options.coverage.istanbul);
             }
             if (typeof options.coverage.reportFile === 'string') {
                 grunt.file.write(options.coverage.reportFile, '');
-                cmd += ' -co ' + path.normalize(options.coverage.reportFile);
+                cmd += ' -co ' + path.resolve(options.coverage.reportFile);
             }
             cmd += pathVar(options.coverage.sourcePrefix, 'sp');
         }
 
         if (typeof options['phantom-bin'] === 'string' && grunt.file.exists(options['phantom-bin'])) {
-            cmd += ' --phantom-bin ' + path.normalize(options['phantom-bin']);
+            cmd += ' --phantom-bin ' + path.resolve(options['phantom-bin']);
         } else if (grunt.file.exists(phantomPath)) {
             grunt.log.ok('Using default node phantomjs path');
-            cmd += ' --phantom-bin ' + path.normalize(phantomPath);
+            cmd += ' --phantom-bin ' + path.resolve(phantomPath);
 	} else {
             grunt.fail.fatal('phantomjs binary could not be found');
         }
-
-        exec(cmd, function(error, stdout, stderr) {
+        exec(cmd, {cwd: execPath}, function(error, stdout, stderr) {
             if (error !== null && stderr === '') {
                 stderr = 'There were test failures, please check the log';
             }
